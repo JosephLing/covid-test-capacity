@@ -34,7 +34,15 @@ def _print(key, date, today, pillar):
         print("[{}] {} {} tests".format(date, pillar, e))
         error = 1
 
+    try:
+        today["caps"][pillar]
+    except KeyError as e:
+        error = 1
+        print("unkown cap")
+
     if error == 0:
+
+
         if today["caps"][pillar] == "":
             print("[{}] {} n/a spec undefined".format(date, pillar))
             error = 1
@@ -76,7 +84,10 @@ def get_tests(data):
     return 0
 
 
-def try_to_int(v):
+def try_to_int(v, pillar):
+    if v.get(pillar) is None:
+        return 0
+    v = v[pillar]
     if v == "":
         return 0
     return int(v)
@@ -92,7 +103,7 @@ def test_lines(dates, pillar):
     plt.xlabel("date")
     plt.ylabel("count")
     # int(data['Daily number of people tested'])
-    plt.plot(format_dates(dates), [try_to_int(dates[k]["caps"][pillar]) for k in dates.keys()], label="{} cap".format(pillar))
+    plt.plot(format_dates(dates), [try_to_int(dates[k]["caps"], pillar) for k in dates.keys()], label="{} cap".format(pillar))
     plt.plot(format_dates(dates), [get_tests(dates[k]["tests"][pillar]) for k in dates.keys()], label="{} tests".format(pillar))
     plt.legend()
     plt.tight_layout()
@@ -101,9 +112,9 @@ def test_lines(dates, pillar):
 
 def test_lines_total(dates):
     pillars = [
-        "Pillar 1",
+        # "Pillar 1",
         "Pillar 2",
-        "Pillar 3",
+        # "Pillar 3",
         "Pillar 4"
     ]
 
@@ -111,7 +122,7 @@ def test_lines_total(dates):
     plt.xlabel("date")
     plt.ylabel("count")
     # int(data['Daily number of people tested'])
-    plt.plot(format_dates(dates), [sum([try_to_int(dates[k]["caps"][pillar]) for pillar in pillars]) for k in dates.keys()], label="cap")
+    plt.plot(format_dates(dates), [sum([try_to_int(dates[k]["caps"], pillar) for pillar in pillars]) for k in dates.keys()], label="cap")
     plt.plot(format_dates(dates), [sum([get_tests(dates[k]["tests"][pillar]) for pillar in pillars]) for k in dates.keys()], label="tests")
     plt.legend()
     plt.tight_layout()
@@ -146,7 +157,7 @@ def main():
         if cap["Lab capacity"] == "":
             # note: this works but can cause percentage usage to go over capacity
             # but from one quick look through the data it doesn't
-            # v = caps[count-1]["Lab capacity"]
+            v = caps[count-1]["Lab capacity"]
             # print("DEBUG: {} {}".format(cap["Date of reporting"], cap["Pillar"]))
             pass
         else:
@@ -154,13 +165,13 @@ def main():
 
         dates[cap["Date of reporting"]]["caps"][cap["Pillar"]] = v
         count += 1
-    # pillars = ["Pillar 1", "Pillar 2", "Pillar 3", "Pillar 4"]
-    # for pillar in pillars:
-    #     test_lines(dates, pillar)
-    #     save("{}_capacity".format(pillar.replace(" ", "")))
+    pillars = ["Pillar 1", "Pillar 2", "Pillar 3", "Pillar 4"]
+    for pillar in pillars:
+        test_lines(dates, pillar)
+        save("{}_capacity".format(pillar.replace(" ", "")))
 
-    # test_lines_total(dates)
-    # save("all_pillars_capacity")
+    test_lines_total(dates)
+    save("all_pillars_capacity")
 
     for date in dates.keys():
         prettyprint(dates, date)

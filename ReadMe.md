@@ -1,7 +1,34 @@
 ### UK COVID-19 test capacity analysis
 
-- [data](https://www.gov.uk/government/publications/coronavirus-covid-19-testing-data-methodology/covid-19-testing-data-methodology-note)
-- [methodology of how they got the data](https://www.gov.uk/guidance/coronavirus-covid-19-information-for-the-public)
+- [methodology of how they got the data](https://www.gov.uk/government/publications/coronavirus-covid-19-testing-data-methodology/covid-19-testing-data-methodology-note)
+
+![](testing_process_flowchart_june9.png)
+> tests are never double counted......  some people are tested more than once
+
+In terms of capacity:
+> Daily capacity estimates are made locally by the labs themselves and fed into the Department of Health and Social Care by pillar leads.
+
+> pillar 1 capacity – projected lab capacity for NHS, PHE and Roche labs for England and lab capacity from Devolved Administrations.
+
+> pillar 2 capacity – projected lab capacity in the Pillar 2 network, including labs in Northern Ireland, Glasgow, Manchester, Milton Keynes and Cambridge
+
+> pillar 3 capacity – projected current capacity to process serology tests to show if people have antibodies from having had COVID-19
+
+> pillar 4 capacity – projected lab capacity for the Oxford University laboratory (COVID 19 infection Study, Biobank Seroprevalence Survey and an element from the care homes study), Eurofin lab capacity for Ipsos MORI swab tests
+
+> Pillar 4 capacity fluctuates over time due to the nature of the research studies that it comprises. These research studies will run for a fixed period of time.
+
+
+The given reason for the disparity and confusion is that:
+> These definitions cover the capacity to process the tests outlined under ‘Tests processed through our laboratories’ and those ‘delivery’ testing routes under pillars 2 and 4 that are processed through the labs. They do not cover the count of tests despatched via ‘delivery’ testing routes under pillars 2 and 4.
+
+So this means that there our tests for which we can't reliably measure how many we can do. But in my tired state reading this it seems that it describes pillar 2 and 4 as measurable. Then dismisses those two pillars with the same description of "'delivery' testing routes" as not possible to check capacity.
+
+> Given the time lag and return rates for home and satellite tests, on occasion more tests are despatched than lab capacity on a given day. This could mean that the capacity number is slightly lower than total number of tests.
+
+This makes sense although "slightly lower" and a large difference is an important factor as well.
+
+- [data](https://www.gov.uk/guidance/coronavirus-covid-19-information-for-the-public)
 
 Using the data provided by the government, in particular the capacity csv which hasn't been accessible until recently. We look at how the capacity has changed over time and also how that relates to individual pillars.
 
@@ -9,7 +36,10 @@ note: As capacity is measured in total you cannot work out the capacity of tests
 
 The number of tests does not refer to the number of people getting tested. We only used number of people tested in April. This is because it is unclear what the relation is between the number of tests and number of people tested. Or unavailable as the government tries to sort out the reporting on it. 
 
-#### Results as June 2nd
+NOTE: all capacity data goes up too June 8th but the graphs are reporting 
+
+
+#### Results as June 9th for tests and June 8th for cap
 This first graph is of all the four pillars comparing the number of tests against the capacity. 
 ![all capacity](./all_pillars_capacity.png)
 The really interesting factor here is how much the capacity peaks, in particular how it peaked at 250,000 nearly. As well how at the start we had a lot capacity but very few tests actually being done.
