@@ -57,8 +57,12 @@ Pillar 2: number of tests against capacity
 > Pillar 2: swab testing for the wider population, as set out in government guidance
 
 ![pillar 2](./Pillar2_capacity.png)
+![pillar 2](./Pillar2_detailed_capacity.png)
+
 
 This graph is a lot more exciting as there is a period there were more tests being done than there was capacity to do them. At least that it was I understand from the data as you can't store up capacity to do tests as there our so many hours in a day. In doing so it does question some of the validity of the data in how that is possible to happen in the first place.
+Update: I have added in the In Person and Delivered tests which help give a clearer breakdown of what kind of tests have been done. I still unsure quite how to read which of thoses tests count towards the capacity. As well as examining the peaks needs to be looked at as well.
+
 
 ---
 Pillar 3: number of tests against capacity
@@ -74,8 +78,23 @@ Pillar 4: number of tests against capacity
 > Pillar 4: serology and swab testing for national surveillance supported by PHE, ONS, Biobank, universities and other partners to learn more about the prevalence and spread of the virus and for other testing research purposes, for example on the accuracy and ease of use of home testing
 
 ![pillar 4](./Pillar4_capacity.png)
+![pillar 2](./Pillar4_detailed_capacity.png)
 
-Now I am just more confused than I was for pillar 3.
+After reading more about Pillar 4 testing it is a lot more research based trying to figure out how to do the antibody testing. Therefore that could explain the sporadic data. However it still all over the place and shows that raw test numbers doesn't give the whole picutre.
+
+And I think the two graphs I have made for pillar 4 don't give the full picture of what is happening here either. 
+
+-----
+In Person and Delivered tests (Pillar 2 and Pillar 4)
+
+![In Person and Delivered tests (Pillar 2 and Pillar 4)](inperson_and_delivery_tests.png)
+
+WIP trying to get a better unstanding of the peaks and in person and delivered tests
+
+should probably pull up the individual areas for comparison and stuff
+
+-----
+
 
 #### conclusion
 There is some strange stuff going on with the COVID-19 testing data. I am very glad that people more experienced, smarter and wiser are looking into this:
