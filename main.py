@@ -119,9 +119,9 @@ def test_lines(dates, pillar):
 
 def test_lines_total(dates):
     pillars = [
-        # "Pillar 1",
+        "Pillar 1",
         "Pillar 2",
-        # "Pillar 3",
+        "Pillar 3",
         "Pillar 4"
     ]
 
@@ -175,26 +175,75 @@ def graph_delivery_inperson_pillar(dates, pillar):
 
 
 def graph_pillar2_pillar4(dates):
-    plt.title("tests processed delivery and in person for pillars 2 and 4")
+    plt.title("tests processed asdf delivery and in person for pillars 2 and 4")
     plt.xlabel("date")
     plt.ylabel("count")
     pillars = [
-        "Pillar 2",
-        "Pillar 4"
+        "Pillar 1",
+        # "Pillar 2",
+        # "Pillar 3",
     ]
     plt.plot(format_dates(dates),
              [sum([try_to_int(dates[k]["caps"], pillar) for pillar in pillars]) for k in dates.keys()], label="cap")
 
     plt.plot(format_dates(dates),
-             [sum([get_int(dates[k]["tests"][pillar], "Daily In-person (tests processed)") for pillar in pillars]) for k in dates.keys()], label="In person (tests processed)")
+             [sum([get_int(dates[k]["tests"][pillar], "Daily In-person (tests processed)") for pillar in pillars]) for k
+              in dates.keys()], label="In person (tests processed)")
 
     plt.plot(format_dates(dates),
-             [sum([get_int(dates[k]["tests"][pillar], "Daily Delivery (tests sent out)") for pillar in pillars]) for k in dates.keys()], label="delivery (tests sent out)")
-
+             [sum([get_int(dates[k]["tests"][pillar], "Daily Delivery (tests sent out)") for pillar in pillars]) for k
+              in dates.keys()], label="delivery (tests sent out)")
 
     plt.legend()
     plt.tight_layout()
     plt.xticks(rotation=90, fontsize=5)
+
+
+def foo(dates):
+    plt.title("tests processed asdf and in person for pillars 2 and 4")
+    plt.xlabel("date")
+    plt.ylabel("count")
+    pillars = [
+        "Pillar 1",
+        "Pillar 2",
+        "Pillar 3",
+        "Pillar 4",
+    ]
+    import datetime
+    plt.plot(format_dates(dates),
+             [sum([try_to_int(dates[k]["caps"], pillar) for pillar in pillars]) for k in dates.keys()], label="cap")
+
+    plt.plot(format_dates(dates),
+             [sum([get_tests(dates[k]["tests"][pillar]) for pillar in pillars]) for k in dates.keys()], label="tests")
+
+    # plt.plot(format_dates(dates),
+    #          [check_weekend(], label="days")
+    d = [k for k in dates.keys() if datetime.datetime.strptime(k, "%d/%m/%Y").weekday() >= 5]
+    for i in range(0, len(d), 2):
+        plt.axvspan(d[i], d[i + 1], color='purple', alpha=0.1)
+
+    # data no longer allowing people count
+    plt.axvspan("22/05/2020", "22/05/2020", color='red', alpha=0.5)
+
+    # lockdown starts
+    plt.axvspan("21/03/2020", "21/03/2020", color='green', alpha=0.5)
+
+    plt.axvspan("30/05/2020", "30/05/2020", color='blue', alpha=0.5)
+
+    # lockdown eased
+    plt.axvspan("13/05/2020", "13/05/2020", color='green', alpha=0.5)
+    plt.axvspan("01/06/2020", "01/06/2020", color='green', alpha=0.5)
+
+    plt.legend()
+    plt.tight_layout()
+    plt.xticks(rotation=90, fontsize=5)
+
+
+def check_weekend(v):
+    if v < 5:
+        return -10
+    else:
+        return 200000
 
 
 def main():
@@ -217,7 +266,7 @@ def main():
         if cap["Lab capacity"] == "":
             # note: this works but can cause percentage usage to go over capacity
             # but from one quick look through the data it doesn't
-            v = caps[count - 1]["Lab capacity"]
+            # v = caps[count - 1]["Lab capacity"]
             # print("DEBUG: {} {}".format(cap["Date of reporting"], cap["Pillar"]))
             pass
         else:
@@ -227,25 +276,35 @@ def main():
         count += 1
 
     pillars = ["Pillar 1", "Pillar 2", "Pillar 3", "Pillar 4"]
-    for pillar in pillars:
-        test_lines(dates, pillar)
-        save("{}_capacity".format(pillar.replace(" ", "")))
+    # for pillar in pillars:
+    #     test_lines(dates, pillar)
+    #     save("{}_capacity".format(pillar.replace(" ", "")))
 
-    test_lines_total(dates)
-    save("all_pillars_capacity")
+    # test_lines_total(dates)
+    # save("all_pillars_capacity")
 
-    for date in dates.keys():
-        prettyprint(dates, date)
-        print("--------------")
+    # for date in dates.keys():
+    #     prettyprint(dates, date)
+    #     print("--------------")
 
-    graph_delivery_inperson_pillar(dates, "Pillar 2")
-    save("Pillar2_detailed_capacity")
-
-    graph_delivery_inperson_pillar(dates, "Pillar 4")
-    save("Pillar4_detailed_capacity")
-
-    graph_pillar2_pillar4(dates)
-    save("inperson_and_delivery_tests")
+    # graph_delivery_inperson_pillar(dates, "Pillar 2")
+    # save("Pillar2_detailed_capacity")
+    #
+    # graph_delivery_inperson_pillar(dates, "Pillar 4")
+    # save("Pillar4_detailed_capacity")
+    #
+    # graph_pillar2_pillar4(dates)
+    # save("inperson_and_delivery_tests")
+    #
+    foo(dates)
+    plt.show()
+    # print([sum([get_int(dates[k]["tests"][pillar], "Daily number of positive cases") for pillar in
+    #             [
+    #                 "Pillar 1",
+    #                 "Pillar 2",
+    #                 "Pillar 3",
+    #                 # "Pillar 4"
+    #             ]]) for k in dates.keys()])
 
 
 if __name__ == "__main__":
