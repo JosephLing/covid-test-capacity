@@ -200,14 +200,14 @@ def graph_pillar2_pillar4(dates):
 
 
 def foo(dates):
-    plt.title("tests processed asdf and in person for pillars 2 and 4")
+    plt.title("foo bar")
     plt.xlabel("date")
     plt.ylabel("count")
     pillars = [
         "Pillar 1",
         "Pillar 2",
-        "Pillar 3",
-        "Pillar 4",
+        # "Pillar 3",
+        # "Pillar 4",
     ]
     import datetime
     plt.plot(format_dates(dates),
@@ -279,14 +279,11 @@ def main():
     # for pillar in pillars:
     #     test_lines(dates, pillar)
     #     save("{}_capacity".format(pillar.replace(" ", "")))
-
+    #
     # test_lines_total(dates)
     # save("all_pillars_capacity")
-
-    # for date in dates.keys():
-    #     prettyprint(dates, date)
-    #     print("--------------")
-
+    #
+    #
     # graph_delivery_inperson_pillar(dates, "Pillar 2")
     # save("Pillar2_detailed_capacity")
     #
