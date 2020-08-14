@@ -276,25 +276,25 @@ def main():
         count += 1
 
     pillars = ["Pillar 1", "Pillar 2", "Pillar 3", "Pillar 4"]
-    # for pillar in pillars:
-    #     test_lines(dates, pillar)
-    #     save("{}_capacity".format(pillar.replace(" ", "")))
+    for pillar in pillars:
+        test_lines(dates, pillar)
+        save("{}_capacity".format(pillar.replace(" ", "")))
+
+    test_lines_total(dates)
+    save("all_pillars_capacity")
+
+
+    graph_delivery_inperson_pillar(dates, "Pillar 2")
+    save("Pillar2_detailed_capacity")
+
+    graph_delivery_inperson_pillar(dates, "Pillar 4")
+    save("Pillar4_detailed_capacity")
+
+    graph_pillar2_pillar4(dates)
+    save("inperson_and_delivery_tests")
     #
-    # test_lines_total(dates)
-    # save("all_pillars_capacity")
-    #
-    #
-    # graph_delivery_inperson_pillar(dates, "Pillar 2")
-    # save("Pillar2_detailed_capacity")
-    #
-    # graph_delivery_inperson_pillar(dates, "Pillar 4")
-    # save("Pillar4_detailed_capacity")
-    #
-    # graph_pillar2_pillar4(dates)
-    # save("inperson_and_delivery_tests")
-    #
-    foo(dates)
-    plt.show()
+    # foo(dates)
+    # plt.show()
     # print([sum([get_int(dates[k]["tests"][pillar], "Daily number of positive cases") for pillar in
     #             [
     #                 "Pillar 1",
